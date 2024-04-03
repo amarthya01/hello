@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothes Delivery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        #menu {
+            display: flex;
+            justify-content: center;
+            background-color: #555;
+            padding: 0.5em;
+        }
+
+        #menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            margin: 0 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #menu a:hover {
+            background-color: #777;
+        }
+
+        #content {
+            padding: 1em;
+        }
+
+        #items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1em;
+            background-color: white;
+            text-align: center;
+            width: 200px;
+            margin: 10px;
+        }
+
+        #delivery {
+            text-align: center;
+            padding: 1em;
+        }
+
+        #payment {
+            text-align: center;
+            padding: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Clothes Delivery</h1>
+    </header>
+
+    <div id="menu">
+        <a href="#">Home</a>
+        <a href="#">Men's Clothing</a>
+        <a href="#">Women's Clothing</a>
+        <a href="#">Kids' Clothing</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div id="content">
+        <div id="items">
+            <div class="item">Item 1<br>Price: $20<br><button onclick="addToCart('Item 1')">Add to Cart</button></div>
+            <div class="item">Item 2<br>Price: $30<br><button onclick="addToCart('Item 2')">Add to Cart</button></div>
+            <!-- Add more items as needed -->
+        </div>
+
+        <div id="delivery">
+            <h2>Delivery Location</h2>
+            <label for="location">Enter your location:</label>
+            <input type="text" id="location" placeholder="Enter your address">
+            <button onclick="confirmDelivery()">Confirm Delivery</button>
+        </div>
+
+        <div id="payment">
+            <h2>Payment</h2>
+            <p>Total Amount: $<span id="totalAmount">0</span></p>
+            <button onclick="proceedToPayment()">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(item) {
+            cart.push(item);
+            updateTotalAmount();
+        }
+
+        function updateTotalAmount() {
+            const totalAmountElement = document.getElementById("totalAmount");
+            totalAmountElement.innerText = calculateTotalAmount();
+        }
+
+        function calculateTotalAmount() {
+            // Implement your logic to calculate the total amount based on items in the cart
+            // For simplicity, let's assume each item costs $10
+            const itemPrice = 10;
+            return cart.length * itemPrice;
+        }
+
+        function confirmDelivery() {
+            const location = document.getElementById("location").value;
+            if (location.trim() !== "") {
+                alert(`Delivery confirmed to ${location}`);
+            } else {
+                alert("Please enter a valid location");
+            }
+        }
+
+        function proceedToPayment() {
+            const totalAmount = calculateTotalAmount();
+            if (totalAmount > 0) {
+                alert(`Proceeding to payment. Total amount: $${totalAmount}`);
+            } else {
+                alert("Please add items to the cart before proceeding to payment");
+            }
+        }
+    </script>
+</body>
+
+</html>
